@@ -1,0 +1,43 @@
+# .github/workflows/ml-pipeline.yml
+name: ML Model CI
+
+# BUG FIX 4: Changed trigger from "branches: main" to "branches-ignore: [main]"
+# so the pipeline runs on every push to ALL branches EXCEPT main.
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      # BUG FIX 2: Added missing checkout step - without this the runner has
+      # no access to repository files, causing pip install and all other steps to fail.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      # BUG FIX 3: Added missing "run:" directive to the Linter Check step.
+      # A step MUST have either "run:" or "uses:"; an empty step causes a parse error.
+      - name: Linter Check
+        run: pylint --disable=R,C model.py
+
+      - name: Model Dry Test
+        run: |
+          python -c "import torch; print('Model environment ready!')"
+
+      # New step: Upload README.md as a GitHub artifact named "project-doc"
+      - name: Upload Project Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: project-doc
+          path: README.md
