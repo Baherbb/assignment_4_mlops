@@ -194,6 +194,24 @@ See [`.github/workflows/ml-pipeline.yml`](.github/workflows/ml-pipeline.yml) for
 
 ---
 
+## Evidence: Successful Pipeline Run (Green Check)
+
+The pipeline ran successfully on the `feature/initial-pipeline` branch. All 6 steps completed with no errors:
+
+- Pylint rated `model.py` at **10.00/10**
+- `Model environment ready!` printed successfully
+- `project-doc` artifact (README.md, 3198 bytes) uploaded successfully
+
+**Successful run:** [https://github.com/Baherbb/assignment_4_mlops/actions/runs/23170805570](https://github.com/Baherbb/assignment_4_mlops/actions/runs/23170805570)
+
+**Actions tab screenshot:**
+
+![GitHub Actions Green Run](evidence/green-run.png)
+
+> Screenshot shows a successful (green checkmark) run of the `ML Model CI` workflow on the `feature/initial-pipeline` branch.
+
+---
+
 ## GitHub Repository
 
 [https://github.com/Baherbb/assignment_4_mlops](https://github.com/Baherbb/assignment_4_mlops)
