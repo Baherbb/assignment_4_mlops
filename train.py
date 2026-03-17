@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 
 # ── MLflow setup ──────────────────────────────────────────────────────────────
-TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI", "mlruns")
+TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI") or "mlruns"
 mlflow.set_tracking_uri(TRACKING_URI)
 mlflow.set_experiment("iris-classifier")
 

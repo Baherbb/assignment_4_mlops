@@ -14,7 +14,7 @@ import mlflow
 THRESHOLD = 0.85
 
 # ── MLflow setup ──────────────────────────────────────────────────────────────
-TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI", "mlruns")
+TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI") or "mlruns"
 mlflow.set_tracking_uri(TRACKING_URI)
 
 # ── Read Run ID ───────────────────────────────────────────────────────────────
